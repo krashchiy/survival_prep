@@ -12,6 +12,8 @@ namespace SurvivalPrep.DBModels
         {
         }
 
+        public DbSet<QuestionCategory> QuestionCategories { get; set; }
+        public DbSet<Question> Questions { get; set; }
     }
 
     public class Question
@@ -28,7 +30,7 @@ namespace SurvivalPrep.DBModels
     {
         public int QuestionCategoryId { get; set; }
         public string CategoryName { get; set; }
-        public decimal ScoreWeight { get; set; }
+        public int ScoreWeight { get; set; }
 
         public ICollection<Question> Questions { get; set; }
     }

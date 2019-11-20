@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurvivalPrep.DBModels;
 
 namespace SurvivalPrep.Migrations
 {
     [DbContext(typeof(PrepContext))]
-    partial class PrepContextModelSnapshot : ModelSnapshot
+    [Migration("20191120033003_FooBar")]
+    partial class FooBar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
