@@ -12,8 +12,14 @@ namespace SurvivalPrep.DBModels
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ItemDisaster>().HasKey(id => new { id.ItemId, id.DisasterId });
+        }
+
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Disaster> Disasters { get; set; }
         public DbSet<Item> Items { get; set; }
     }
 

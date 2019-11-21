@@ -9,8 +9,8 @@ using SurvivalPrep.DBModels;
 namespace SurvivalPrep.Migrations
 {
     [DbContext(typeof(PrepContext))]
-    [Migration("20191121022905_AddItems")]
-    partial class AddItems
+    [Migration("20191121051650_UpdateItems")]
+    partial class UpdateItems
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,22 @@ namespace SurvivalPrep.Migrations
                 .HasAnnotation("ProductVersion", "3.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("SurvivalPrep.DBModels.Disaster", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Disasters");
+                });
 
             modelBuilder.Entity("SurvivalPrep.DBModels.Item", b =>
                 {
@@ -31,6 +47,7 @@ namespace SurvivalPrep.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Score")
@@ -39,6 +56,21 @@ namespace SurvivalPrep.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("SurvivalPrep.DBModels.ItemDisaster", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DisasterId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ItemId", "DisasterId");
+
+                    b.HasIndex("DisasterId");
+
+                    b.ToTable("ItemDisaster");
                 });
 
             modelBuilder.Entity("SurvivalPrep.DBModels.Question", b =>
@@ -80,6 +112,21 @@ namespace SurvivalPrep.Migrations
                     b.HasKey("QuestionCategoryId");
 
                     b.ToTable("QuestionCategories");
+                });
+
+            modelBuilder.Entity("SurvivalPrep.DBModels.ItemDisaster", b =>
+                {
+                    b.HasOne("SurvivalPrep.DBModels.Disaster", "Disaster")
+                        .WithMany("ItemDisasters")
+                        .HasForeignKey("DisasterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SurvivalPrep.DBModels.Item", "Item")
+                        .WithMany("ItemDisasters")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SurvivalPrep.DBModels.Question", b =>
