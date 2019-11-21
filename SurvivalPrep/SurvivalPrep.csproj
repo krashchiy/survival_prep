@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191121035734_DisasterItemsCreate.cs" />
+    <Compile Remove="Migrations\20191121035734_DisasterItemsCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Files\Trivia.xlsx" />
   </ItemGroup>
 
