@@ -14,6 +14,7 @@ namespace SurvivalPrep.DBModels
 
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Item> Items { get; set; }
     }
 
     public class Question

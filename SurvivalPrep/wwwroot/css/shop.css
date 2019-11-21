@@ -1,0 +1,31 @@
+﻿body {
+}
+
+/* button code - http://jsfiddle.net/J8zwC/ */
+.but {
+    border: 2px solid black;
+    background-color: white;
+    width: 100px;
+    cursor: pointer;
+}
+
+.but:hover {
+    background-color: lightgrey;
+}
+
+.info {
+    border: solid black 2px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item-box {
+    height: 240px;
+    width: 240px;
+    margin: 30px;
+    vertical-align: middle !important;
+    border: none !important;
+}
