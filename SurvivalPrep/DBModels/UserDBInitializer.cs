@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SurvivalPrep.Areas.Identity.Data
+namespace SurvivalPrep.DBModels
 {
     public class UserDBInitializer
     {
-        public static void Initialize(UsersRolesDB db)
+        public static void Initialize(PrepContext db)
         {
             db.Database.Migrate();
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SurvivalPrep.Migrations.UsersRolesDBMigrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class AddUserData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,8 @@ namespace SurvivalPrep.Migrations.UsersRolesDBMigrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Money = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -152,6 +153,31 @@ namespace SurvivalPrep.Migrations.UsersRolesDBMigrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ItemInstance",
+                columns: table => new
+                {
+                    ItemId = table.Column<int>(nullable: false),
+                    ApplicationUserID = table.Column<string>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItemInstance", x => new { x.ItemId, x.ApplicationUserID });
+                    table.ForeignKey(
+                        name: "FK_ItemInstance_AspNetUsers_ApplicationUserID",
+                        column: x => x.ApplicationUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItemInstance_Items_ItemId",
+                        column: x => x.ItemId,
+                        principalTable: "Items",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +216,11 @@ namespace SurvivalPrep.Migrations.UsersRolesDBMigrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ItemInstance_ApplicationUserID",
+                table: "ItemInstance",
+                column: "ApplicationUserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -208,6 +239,9 @@ namespace SurvivalPrep.Migrations.UsersRolesDBMigrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "ItemInstance");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SurvivalPrep.DBModels;
 using SurvivalPrep.Models;
 
 [assembly: HostingStartup(typeof(SurvivalPrep.Areas.Identity.IdentityHostingStartup))]
@@ -15,12 +16,12 @@ namespace SurvivalPrep.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<UsersRolesDB>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("UsersRolesDBConnection")));
+                //services.AddDbContext<PrepContext>(options =>
+                //    options.UseSqlServer(
+                //        context.Configuration.GetConnectionString("PrepDB")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<UsersRolesDB>();
+                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<PrepContext>();
             });
         }
     }
