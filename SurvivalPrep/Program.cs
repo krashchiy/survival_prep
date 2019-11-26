@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using SurvivalPrep.DBModels;
+using SurvivalPrep.Areas.Identity.Data;
+using SurvivalPrep.Models;
 
 namespace SurvivalPrep
 {
@@ -24,6 +26,8 @@ namespace SurvivalPrep
                 try
                 {
                     SeedData.Initialize(services);
+                    var usersRolesDB = services.GetRequiredService<UsersRolesDB>();
+                    UserDBInitializer.Initialize(usersRolesDB);
                 }
                 catch (Exception ex)
                 {
