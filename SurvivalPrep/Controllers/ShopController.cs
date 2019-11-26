@@ -21,7 +21,12 @@ namespace SurvivalPrep.Controllers
         // GET: Shop
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Items.ToListAsync());
+            var items = from s in _context.Items
+                          select s;
+
+            items = items.Include(i => i.ItemDisasters);
+
+            return View(await items.AsNoTracking().ToListAsync());
         }
 
         // GET: Shop/Details/5

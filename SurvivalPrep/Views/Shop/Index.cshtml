@@ -8,6 +8,9 @@
 <h1>Shop</h1>
 
 <table class="table" style="text-align: center; border: none">
+    @{
+        int id = 0;
+    }
     <tbody>
         <!-- https://stackoverflow.com/questions/9198549/razor-view-dynamic-table-rows -->
         @for (int i = 0; i < Model.Count(); i += 3)
@@ -15,19 +18,33 @@
             <tr>
                 @for (int j = 0; j < 3 && i + j < Model.Count(); j++)
                 {
-                    <td class="item-box">
-                        <img src="~/files/image_1.png" style="width: 50%"/>
+                    <td class="item-box" id="row_@id">
+                        <img src="~/files/image_1.png" style="width: 50%" />
                         <br />
                         <b>@Html.DisplayFor(model => model.ElementAt(i + j).Name)</b>
                         <br />
                         <div class="info">
                             Cost: @Html.DisplayFor(model => model.ElementAt(i + j).Cost) &nbsp; &nbsp;
                             Score: @Html.DisplayFor(model => model.ElementAt(i + j).Score)
+                            <br />
+                            Disaster(s): @Html.DisplayFor(model => model.ElementAt(i + j).ItemDisasters)
+                            <hr style="margin: 0px; margin-top: 2px" />
+                            Quantity:
+                            <br />
+                            <i class="fas fa-minus fa-xs" style="padding-right: 10px; cursor: pointer;" onclick="dec_quantity(event, @id)"></i>
+                            <span id="quant_@id" name="quant_@id" style="user-select: none;">1</span>
+                            <i class="fas fa-plus fa-xs" style="padding-left: 10px; cursor: pointer;" onclick="inc_quantity(event, @id)"></i>
                         </div>
                         <input class="but" type="button" value="Buy" />
                     </td>
+                    id++;
                 }
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts
+{
+    <script src="~/js/quantity.js"></script>
+}
