@@ -26,6 +26,7 @@ namespace SurvivalPrep
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc();
             services.AddDbContextPool<PrepContext>(ops =>
                 ops.UseSqlServer(Configuration.GetConnectionString("PrepDB")));
             //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
@@ -34,6 +35,7 @@ namespace SurvivalPrep
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -46,7 +48,7 @@ namespace SurvivalPrep
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -56,6 +58,7 @@ namespace SurvivalPrep
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             UpdateDatabase(app, env);

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace SurvivalPrep.DBModels
 {
-    public class PrepContext: DbContext
+    public class PrepContext: IdentityDbContext<ApplicationUser>
     {
-        public PrepContext(DbContextOptions options) : base(options)
+        public PrepContext(DbContextOptions<PrepContext> options) : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ItemDisaster>().HasKey(id => new { id.ItemId, id.DisasterId });
+            modelBuilder.Entity<ItemInstance>().HasKey(item => new { item.ItemId, item.ApplicationUserID });
         }
 
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
