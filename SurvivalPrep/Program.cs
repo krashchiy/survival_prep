@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using SurvivalPrep.DBModels;
 using SurvivalPrep.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace SurvivalPrep
 {
@@ -26,7 +27,8 @@ namespace SurvivalPrep
                 {
                     SeedData.Initialize(services);
                     var usersRolesDB = services.GetRequiredService<PrepContext>();
-                    UserDBInitializer.Initialize(usersRolesDB);
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    UserDBInitializer.Initialize(usersRolesDB,userManager);
                 }
                 catch (Exception ex)
                 {
