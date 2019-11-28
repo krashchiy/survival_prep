@@ -4,8 +4,21 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    string money = "";
+    if (@ViewData["Money"] != null)
+    {
+        money = @ViewData["Money"].ToString();
+    }
+}
 
-<h1>Shop</h1>
+
+<div style="clear: both">
+    <h1 class="title">Shop</h1>
+
+    <b class="money" id="money" name="money">Money: @money</b>
+</div>
+
 
 <table class="table" style="text-align: center; border: none">
     @{
@@ -18,24 +31,24 @@
             <tr>
                 @for (int j = 0; j < 3 && i + j < Model.Count(); j++)
                 {
-                    <td class="item-box" id="row_@id">
+                    <td class="item-box" id="box_@id">
                         <img src="~/files/image_1.png" style="width: 50%" />
                         <br />
-                        <b>@Html.DisplayFor(model => model.ElementAt(i + j).Name)</b>
+                        <b id="name_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Name)</b>
                         <br />
                         <div class="info">
-                            Cost: @Html.DisplayFor(model => model.ElementAt(i + j).Cost) &nbsp; &nbsp;
-                            Score: @Html.DisplayFor(model => model.ElementAt(i + j).Score)
+                            Cost: <span id="cost_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Cost)</span> &nbsp; &nbsp;
+                            Score: <span id="score_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Score)</span>
                             <br />
                             Disaster(s): @Html.DisplayFor(model => model.ElementAt(i + j).ItemDisasters)
                             <hr style="margin: 0px; margin-top: 2px" />
                             Quantity:
                             <br />
-                            <i class="fas fa-minus fa-xs" style="padding-right: 10px; cursor: pointer;" onclick="dec_quantity(event, @id)"></i>
+                            <i class="plusminus fas fa-minus fa-xs" onclick="dec_quantity(event, @id)"></i>
                             <span id="quant_@id" name="quant_@id" style="user-select: none;">1</span>
-                            <i class="fas fa-plus fa-xs" style="padding-left: 10px; cursor: pointer;" onclick="inc_quantity(event, @id)"></i>
+                            <i class="plusminus fas fa-plus fa-xs" onclick="inc_quantity(event, @id)"></i>
                         </div>
-                        <input class="but" type="button" value="Buy" />
+                        <input class="but" type="button" value="Buy" onclick="buy(event, @id)" />
                     </td>
                     id++;
                 }
@@ -46,5 +59,5 @@
 
 @section Scripts
 {
-    <script src="~/js/quantity.js"></script>
+    <script src="~/js/shop.js"></script>
 }
