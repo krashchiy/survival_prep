@@ -53,7 +53,7 @@ namespace SurvivalPrep.DBModels
             Item item = db.Items.Where(o => o.Name == "Respirator").FirstOrDefault();
             user1.OwnedItems = new List<ItemInstance>
             {
-                new ItemInstance{ApplicationUser=user1,ItemId=item.ID}
+                new ItemInstance{ApplicationUser=user1,ItemId=item.ID,Quantity=2}
             };
             user1.Money = 2000;
             user1.EmailConfirmed = true;
