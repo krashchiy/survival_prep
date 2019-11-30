@@ -35,6 +35,7 @@ namespace SurvivalPrep.Controllers
 
             var user = await _userManager.Users.Include(u => u.OwnedItems)
                 .ThenInclude(i=>i.Item)
+                .ThenInclude(it=>it.ItemDisasters)
                 .FirstOrDefaultAsync(u => u.UserName == username);
 
             if(user == null)
@@ -42,7 +43,9 @@ namespace SurvivalPrep.Controllers
                 return NotFound();
             }
 
-            return View(user);
+            var tuple = new Tuple<ApplicationUser, IEnumerable<Disaster>>(user, await _db.Disasters.Include(d => d.ItemDisasters).ToListAsync());
+
+            return View(tuple);
         }
     }
 }
