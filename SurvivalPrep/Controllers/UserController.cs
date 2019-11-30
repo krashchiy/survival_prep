@@ -23,7 +23,14 @@ namespace SurvivalPrep.Controllers
         public IActionResult Index()
         {
             // Redirect to High Scores page when built
-            return View();
+            return NotFound();
+        }
+
+        public async Task<IActionResult> Highscores()
+        {
+            List<ApplicationUser> usersList = _userManager.Users.Include(u => u.OwnedItems).ThenInclude(i => i.Item).ToList();
+            usersList.Sort();
+            return View(usersList);
         }
 
         public async Task<IActionResult> Details(String? username)
