@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,16 +14,55 @@ namespace SurvivalPrep.Controllers
     public class ShopController : Controller
     {
         private readonly PrepContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ShopController(PrepContext context)
+        public ShopController(PrepContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
+        }
+
+        [Authorize]
+        public async Task<IActionResult> BuyItem(int id, int quantity)
+        {
+            var item = await _context.Items.FindAsync(id + 1);
+            var user_id = _userManager.GetUserId(User);
+            var user = _context.Users.Where(s => s.Id == user_id).FirstOrDefault();
+
+            if (user.Money < item.Cost * quantity)
+            {
+                return BadRequest(new JsonResult(new { success = false }));
+            }
+            else
+            {
+                user.Money = user.Money - item.Cost * quantity;
+                _context.SaveChanges();
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    money = user.Money
+                });
         }
 
         // GET: Shop
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Items.ToListAsync());
+            var id = _userManager.GetUserId(User);
+            var user = _context.Users.Where(s => s.Id == id).FirstOrDefault();
+            if (user != null)
+            {
+                ViewData["Money"] = user.Money;
+            }
+
+            var items = from s in _context.Items
+                          select s;
+
+            items = items.Include(i => i.ItemDisasters);
+
+            return View(await items.AsNoTracking().ToListAsync());
         }
 
         // GET: Shop/Details/5

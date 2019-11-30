@@ -29,3 +29,21 @@
     vertical-align: middle !important;
     border: none !important;
 }
+
+.plusminus {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    cursor: pointer !important;
+}
+
+.money {
+    float: right !important;
+    margin-top: 12px !important;
+    margin-right: 10px !important;
+    font-size: 20px !important;
+}
+
+.title {
+    float: left !important;
+    margin-left: 10px !important;
+}
