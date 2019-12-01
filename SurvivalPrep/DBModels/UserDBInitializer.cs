@@ -34,7 +34,7 @@ namespace SurvivalPrep.DBModels
             // Seed items
             var wildfire = new Disaster { Name = "Wildfire" };
 
-            var respirator = new Item { Name = "Respirator", Cost = 100, Score = 150 };
+            var respirator = new Item { Name = "Respirator", Cost = 100, Score = 150, ImageLink= "https://i.imgur.com/JBU4bWi.jpg" };
             respirator.ItemDisasters = new List<ItemDisaster>
                 {
                     new ItemDisaster

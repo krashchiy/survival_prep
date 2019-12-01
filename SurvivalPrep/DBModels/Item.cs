@@ -16,5 +16,6 @@ namespace SurvivalPrep.DBModels
         public int Score { get; set; }
         public ICollection<ItemDisaster> ItemDisasters { get; set; }
         public ICollection<ItemInstance> ItemInstances { get; set; }
+        public string ImageLink { get; set; }
     }
 }
