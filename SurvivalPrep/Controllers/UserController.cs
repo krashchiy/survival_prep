@@ -23,14 +23,49 @@ namespace SurvivalPrep.Controllers
         public IActionResult Index()
         {
             // Redirect to High Scores page when built
-            return NotFound();
+            return RedirectToAction("Highscores");
         }
 
-        public async Task<IActionResult> Highscores()
+        public IActionResult Highscores()
         {
             List<ApplicationUser> usersList = _userManager.Users.Include(u => u.OwnedItems).ThenInclude(i => i.Item).ToList();
             usersList.Sort();
             return View(usersList);
+        }
+
+        public async Task<IActionResult> DisasterScores(String? disaster)
+        {
+            if(disaster == null)
+            {
+                return NotFound();
+            }
+
+            Disaster disastervar = await _db.Disasters
+                .Include(d=>d.ItemDisasters)
+                .FirstOrDefaultAsync(o => o.Name == disaster);
+
+            if(disastervar == null)
+            {
+                return NotFound();
+            }
+
+            List<ApplicationUser> usersList = _userManager.Users.Include(u => u.OwnedItems)
+                .ThenInclude(i => i.Item)
+                .ThenInclude(it=>it.ItemDisasters)
+                .ToList();
+            List<Tuple<String, int>> userScores = new List<Tuple<string, int>>();
+
+            foreach(ApplicationUser user in usersList)
+            {
+                userScores.Add(new Tuple<string, int>(user.UserName, user.DisasterScore(disastervar)));
+            }
+
+            userScores.Sort((a, b) =>b.Item2.CompareTo(a.Item2));
+
+            ViewData["Disaster"] = disastervar.Name;
+            ViewData["UserScores"] = userScores;
+
+            return View();
         }
 
         public async Task<IActionResult> Details(String? username)

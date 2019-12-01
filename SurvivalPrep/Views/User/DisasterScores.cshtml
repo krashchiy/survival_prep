@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Disaster Scores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.DisplayName(ViewData["Disaster"] + " Scores")</h1>
+<div class="container">
+    <div class="card-body text-dark">
+        <table class="table table-bordered">
+            <tr class="table-header">
+                <th>Position</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            @{var current = 1; }
+            @foreach (var user in (List<Tuple<string, int>>)ViewData["UserScores"])
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayName(current.ToString())
+                    </td>
+                    <td>
+                        <a asp-controller="User" asp-action="Details" asp-route-username="@user.Item1">
+                            @Html.DisplayFor(modelItem => user.Item1)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayName(user.Item2.ToString())
+                    </td>
+                </tr>
+                current += 1;
+            }
+        </table>
+    </div>
+</div>

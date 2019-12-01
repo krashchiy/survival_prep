@@ -24,10 +24,23 @@ namespace SurvivalPrep.DBModels
             return score;
         }
 
+        public int DisasterScore(Disaster disaster)
+        {
+            int score = 0;
+            foreach (ItemInstance item in OwnedItems)
+            {
+                if(item.Item.ItemDisasters.Intersect(disaster.ItemDisasters).Any())
+                {
+                    score += item.Item.Score * item.Quantity;
+                }
+                
+            }
+            return score;
+        }
+
         public int CompareTo(ApplicationUser other)
         {
             return other.TotalScore().CompareTo(TotalScore());
-            //return this.TotalScore().CompareTo();
         }
     }
 }
