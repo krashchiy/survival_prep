@@ -28,6 +28,9 @@ namespace SurvivalPrep.Controllers
 
         public IActionResult Highscores()
         {
+            ViewData["Disasters"] = _db.Disasters.ToList();
+            ViewData["Selected"] = "_All";
+
             List<ApplicationUser> usersList = _userManager.Users.Include(u => u.OwnedItems).ThenInclude(i => i.Item).ToList();
             usersList.Sort();
             return View(usersList);
@@ -49,6 +52,8 @@ namespace SurvivalPrep.Controllers
                 return NotFound();
             }
 
+            ViewData["Disasters"] = _db.Disasters.ToList();
+
             List<ApplicationUser> usersList = _userManager.Users.Include(u => u.OwnedItems)
                 .ThenInclude(i => i.Item)
                 .ThenInclude(it=>it.ItemDisasters)
@@ -64,6 +69,7 @@ namespace SurvivalPrep.Controllers
 
             ViewData["Disaster"] = disastervar.Name;
             ViewData["UserScores"] = userScores;
+            ViewData["Selected"] = disastervar.Name;
 
             return View();
         }

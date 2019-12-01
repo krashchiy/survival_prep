@@ -1,0 +1,32 @@
+﻿
+    <div class="btn-group" role="group" aria-label="Basic example">
+        @{
+            if ((string)ViewData["Selected"] == "_All")
+            {
+
+                <a class="btn btn-secondary active" asp-area="" asp-controller="User" asp-action="Highscores" aria-pressed="true">Total Scores</a>
+            }
+            else
+            {
+                <a class="btn btn-secondary" asp-area="" asp-controller="User" asp-action="Highscores">Total Scores</a>
+            }
+        }
+
+        @{
+            foreach (var disaster in (List<SurvivalPrep.DBModels.Disaster>)ViewData["Disasters"])
+            {
+                if ((string)ViewData["Selected"] == disaster.Name)
+                {
+                    <a class="btn btn-secondary active" asp-area="" asp-controller="User" asp-action="DisasterScores" asp-route-disaster="@disaster.Name" aria-pressed="true">
+                        @Html.DisplayName(disaster.Name)
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-secondary" asp-area="" asp-controller="User" asp-action="DisasterScores" asp-route-disaster="@disaster.Name">
+                        @Html.DisplayName(disaster.Name)
+                    </a>
+                }
+            }
+        }
+    </div>
