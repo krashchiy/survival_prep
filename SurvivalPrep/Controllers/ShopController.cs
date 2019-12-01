@@ -36,6 +36,19 @@ namespace SurvivalPrep.Controllers
             else
             {
                 user.Money = user.Money - item.Cost * quantity;
+
+                var curItem = _context.ItemInstances.Where(i => i.ItemId == item.ID && i.ApplicationUserID == user_id).FirstOrDefault();
+                if (curItem == null)
+                {
+                    user.OwnedItems = new List<ItemInstance>
+                    {
+                        new ItemInstance { ApplicationUser=user, ItemId=item.ID, Quantity=quantity }
+                    };
+                }
+                else
+                {
+                    curItem.Quantity = curItem.Quantity + quantity;
+                }
                 _context.SaveChanges();
             }
 
@@ -60,7 +73,7 @@ namespace SurvivalPrep.Controllers
             var items = from s in _context.Items
                           select s;
 
-            items = items.Include(i => i.ItemDisasters);
+            items = items.Include(i => i.ItemDisasters).ThenInclude(it => it.Disaster);
 
             return View(await items.AsNoTracking().ToListAsync());
         }

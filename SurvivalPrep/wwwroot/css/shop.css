@@ -20,6 +20,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    padding: 5px !important;
 }
 
 .item-box {
@@ -46,4 +47,9 @@
 .title {
     float: left !important;
     margin-left: 10px !important;
+}
+
+.image {
+    width: 50% !important;
+    margin-bottom: 10px !important;
 }
