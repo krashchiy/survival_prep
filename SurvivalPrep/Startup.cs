@@ -26,11 +26,12 @@ namespace SurvivalPrep
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddDbContextPool<PrepContext>(ops =>
                 ops.UseSqlServer(Configuration.GetConnectionString("PrepDB")));
-            //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +73,7 @@ namespace SurvivalPrep
 
             //All the seeding code will go inside this clause. It will run only once with db creation.
             //To rerun with any changes, database needs to be dropped first.
-            if (context.Database.EnsureCreated())
+            if (context.Database.EnsureCreated() || !context.Questions.Any())
             {
                 Utils.ImportTrivia($"{env.ContentRootPath}/Files/Trivia.xlsx", context);
             }

@@ -44,4 +44,13 @@ namespace SurvivalPrep.DBModels
 
         public ICollection<Question> Questions { get; set; }
     }
+
+    public enum Score
+    {
+        All = 0,
+        Beginner = 1,
+        Medium = 2,
+        Advanced = 3,
+        Pro = 5
+    }
 }

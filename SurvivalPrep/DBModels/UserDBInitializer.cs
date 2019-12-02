@@ -23,7 +23,7 @@ namespace SurvivalPrep.DBModels
             // Seed disasters
             var disasters = new Disaster[]
             {
-                new Disaster{Name="Typhoon"},
+                new Disaster{Name="Typhoon"}
             };
             foreach ( Disaster d in disasters)
             {

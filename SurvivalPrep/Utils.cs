@@ -100,17 +100,20 @@ namespace SurvivalPrep
 
         private static string SanitizeAnswer(this string input)
         {
-            input = input.Replace("*CORRECT*", "");
-            input = input.Replace("*CORRECT", "");
+            input = input.ToUpper().Replace("*CORRECT*", "");
+            input = input.ToUpper().Replace("*CORRECT", "");
+
+            //Ignore starting articles
+            if (input.StartsWith("a ", StringComparison.OrdinalIgnoreCase))
+            {
+                input = input.Substring(2);
+            }
+            if (input.StartsWith("the ", StringComparison.OrdinalIgnoreCase))
+            {
+                input = input.Substring(4);
+            }
+            
             return input.Trim();
         }
-    }
-
-    public enum Score
-    {
-        Beginner = 1,
-        Medium = 2,
-        Advanced = 3,
-        Pro = 5
     }
 }

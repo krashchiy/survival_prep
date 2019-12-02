@@ -1,0 +1,42 @@
+﻿@model QuestionViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <h2 class="title">Choose question category</h2>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="btn-group" role="group">
+            <button class="btn btn-secondary active" onclick="changeCategory(0)">All</button>
+            @foreach (var cat in Model.QuestionCategories)
+            {
+                <button for="cat@(cat.QuestionCategoryId)" class="btn btn-secondary" onclick="changeCategory(@cat.QuestionCategoryId)">
+                    @cat.CategoryName
+                </button>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col money">
+        Total earned: <label id="totalEarned">@ViewBag.Money</label>
+        <input type="hidden" id="originalScore" value="@ViewBag.Money"/>
+    </div>
+    <div class="col money">
+        Earned now: <label id="earnedNow">@ViewBag.CurrentScore</label>
+    </div>
+</div>
+<br/>
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="js/challenge.js"></script>
+}
+
+<partial name="_QuestionPartial" model="@Model.Question"/>
