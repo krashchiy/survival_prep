@@ -36,7 +36,7 @@ namespace SurvivalPrep.Controllers
             return View(usersList);
         }
 
-        public async Task<IActionResult> DisasterScores(String? disaster)
+        public async Task<IActionResult> DisasterScores(string? disaster)
         {
             if(disaster == null)
             {
@@ -74,7 +74,7 @@ namespace SurvivalPrep.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Details(String? username)
+        public async Task<IActionResult> Details(string? username)
         {
             if(username == null)
             {

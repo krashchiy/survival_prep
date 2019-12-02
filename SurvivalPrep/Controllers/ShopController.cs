@@ -27,7 +27,7 @@ namespace SurvivalPrep.Controllers
         {
             var item = await _context.Items.FindAsync(id + 1);
             var user_id = _userManager.GetUserId(User);
-            var user = _context.Users.Where(s => s.Id == user_id).FirstOrDefault();
+            var user = _context.Users.FirstOrDefault(s => s.Id == user_id);
 
             if (user.Money < item.Cost * quantity)
             {
@@ -64,7 +64,7 @@ namespace SurvivalPrep.Controllers
         public async Task<IActionResult> Index()
         {
             var id = _userManager.GetUserId(User);
-            var user = _context.Users.Where(s => s.Id == id).FirstOrDefault();
+            var user = _context.Users.FirstOrDefault(s => s.Id == id);
             if (user != null)
             {
                 ViewData["Money"] = user.Money;

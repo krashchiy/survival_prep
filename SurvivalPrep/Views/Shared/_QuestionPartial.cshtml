@@ -1,0 +1,27 @@
+﻿@model SurvivalPrep.DBModels.Question
+
+<div class="row">
+    <h2 class="title">Question #<span id="questionNum">@ViewBag.QuestionNumber</span></h2>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h4 id="currentQuestion">@Model.QuestionBody</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col alert-success" style="display: none" id="correct">Correct!</div>
+    <div class="col alert-danger" style="display: none" id="incorrect">Sorry, wrong answer.</div>
+</div>
+
+    
+<div class="form-group">
+    <input type="hidden" id="questionId" value="@Model.QuestionId" />
+    <label class="col-form-label" for="currentAnswer">Answer: </label>
+    <input id="currentAnswer" type="text" size="75" maxlength="75" />
+</div>
+<div class="form-group">
+    <button class="btn btn-dark" value="SendAnswer" onclick="checkAnswer()" id="answerBtn">Submit Answer</button>
+    <div style="float: right; display: none" id="nextBtn"><button class="btn btn-primary" onclick="getNextQuestion()">Next Question</button></div>
+</div>
+
