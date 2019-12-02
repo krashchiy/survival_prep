@@ -32,7 +32,7 @@
                 @for (int j = 0; j < 3 && i + j < Model.Count(); j++)
                 {
                     <td class="item-box" id="box_@id">
-                        <img src="~/files/image_1.png" style="width: 50%" />
+                        <img src="@Model.ElementAt(i + j).ImageLink" class="image" />
                         <br />
                         <b id="name_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Name)</b>
                         <br />
@@ -40,7 +40,7 @@
                             Cost: <span id="cost_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Cost)</span> &nbsp; &nbsp;
                             Score: <span id="score_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Score)</span>
                             <br />
-                            Disaster(s): @Html.DisplayFor(model => model.ElementAt(i + j).ItemDisasters)
+                            Disaster(s): @String.Join(", ", Model.ElementAt(i + j).ItemDisasters.Select(i => i.Disaster.Name).ToArray())
                             <hr style="margin: 0px; margin-top: 2px" />
                             Quantity:
                             <br />

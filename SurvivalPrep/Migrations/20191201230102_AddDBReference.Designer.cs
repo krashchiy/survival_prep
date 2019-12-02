@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurvivalPrep.DBModels;
 
-namespace SurvivalPrep.Migrations
+namespace SurvivalPrep.Migrations.UsersRolesDBMigrations
 {
     [DbContext(typeof(PrepContext))]
-    partial class PrepContextModelSnapshot : ModelSnapshot
+    [Migration("20191201230102_AddDBReference")]
+    partial class AddDBReference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

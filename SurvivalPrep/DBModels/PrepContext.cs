@@ -19,7 +19,8 @@ namespace SurvivalPrep.DBModels
             modelBuilder.Entity<ItemDisaster>().HasKey(id => new { id.ItemId, id.DisasterId });
             modelBuilder.Entity<ItemInstance>().HasKey(item => new { item.ItemId, item.ApplicationUserID });
         }
-
+        public DbSet<ItemDisaster> ItemDisasters { get; set; }
+        public DbSet<ItemInstance> ItemInstances { get; set; }
         public DbSet<QuestionCategory> QuestionCategories { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Disaster> Disasters { get; set; }
