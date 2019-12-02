@@ -25,6 +25,7 @@ namespace SurvivalPrep.DBModels
             Disaster hurricane = new Disaster { Name = "Hurricane" };
             Disaster earthquake = new Disaster { Name = "Earthquake" };
             Disaster volcano = new Disaster { Name = "Volcanic Eruption" };
+            Disaster flood = new Disaster { Name = "Flood" };
 
             Item respirator = new Item { Name = "Respirator", Cost = 100, Score = 150, ImageLink= "https://i.imgur.com/JBU4bWi.jpg" };
             respirator.ItemDisasters = new List<ItemDisaster>
@@ -56,6 +57,50 @@ namespace SurvivalPrep.DBModels
             db.Items.Add(compass);
             db.SaveChanges();
 
+            Item rowboat = new Item { Name = "Inflatable Rowboat", Cost = 150, Score = 200, ImageLink = "https://i.imgur.com/b8KNPiU.jpg" };
+            rowboat.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = rowboat
+                    }
+                };
+            db.Items.Add(rowboat);
+            db.SaveChanges();
+
+            Item rations = new Item { Name = "Rations", Cost = 50, Score = 20, ImageLink = "https://i.imgur.com/Nadoc5A.jpg" };
+            rations.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = rations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = rations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = rations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = rations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = volcano,
+                        Item = rations
+                    }
+                };
+            db.Items.Add(rations);
+            db.SaveChanges();
+
             Item firstaidkit = new Item { Name = "First-Aid Kit", Cost = 200, Score = 60, ImageLink = "https://i.imgur.com/wYHYCg9.jpg" };
             firstaidkit.ItemDisasters = new List<ItemDisaster>
                 {
@@ -74,6 +119,11 @@ namespace SurvivalPrep.DBModels
                         Disaster = hurricane,
                         Item = firstaidkit
                     },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = firstaidkit
+                    }
                 };
             db.Items.Add(firstaidkit);
             db.SaveChanges();

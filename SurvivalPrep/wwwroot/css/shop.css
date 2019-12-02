@@ -17,17 +17,17 @@
     border: solid black 2px;
     margin-top: 5px;
     margin-bottom: 10px;
-    width: 80%;
+    width: 85%;
     margin-left: auto;
     margin-right: auto;
     padding: 5px !important;
 }
 
 .item-box {
-    height: 240px;
+    height: 400px !important;
     width: 240px;
     margin: 30px;
-    vertical-align: middle !important;
+    vertical-align: bottom !important;
     border: none !important;
 }
 
@@ -51,5 +51,6 @@
 
 .image {
     width: 50% !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 15px !important;
+    margin-top: 10px !important;
 }
