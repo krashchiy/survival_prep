@@ -7,67 +7,8 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+.brutalfont {
+    font-family: 'Black Ops One', cursive;
 }
 
 /*taken from https://stackoverflow.com/questions/28931791/jquery-how-to-grey-out-the-background-while-showing-the-loading-icon-over-it*/
@@ -88,3 +29,88 @@ body {
     top: 50%;
     left: 50%;
 }
+/*
+body {
+    background-color:#000;
+    margin:0;
+    overflow:hidden;
+    padding:0;
+}
+
+.screen {
+    animation:colorPulse 5s infinite ease-in-out;
+    background-image:radial-gradient(#444, #111);
+    box-shadow:0 0 5vmin 1vmin #000 inset;
+    box-sizing:border-box;
+    font-family:'Fira Mono', monospace;
+    font-size:20px;
+    height:100vh;
+    overflow:hidden;
+    padding:10vmin;
+    width:100vw;
+}
+
+.screen:before {
+    animation:wave 10s infinite ease-in-out;
+    content:"";
+    height:20vh;
+    left:0;
+    opacity:.5;
+    position:absolute;
+    right:0;
+    z-index:1;
+}
+
+.screen:after {
+    background-image:linear-gradient(transparent, transparent 3px, #222);
+    background-size:4px 4px;
+    bottom:0;
+    content:"";
+    left:0;
+    pointer-events:none;
+    position:absolute;
+    right:0;
+    top:0;
+    z-index:2;
+}
+
+p:last-child:after {
+    animation:blink 1s infinite;
+    content:"_";
+}
+
+@keyframes colorPulse {
+    0%, 100% {
+        color:#0c0;
+    }
+    48%, 52% {
+        color:#090;
+    }
+    50% {
+        color:#060;
+    }
+}
+
+@keyframes wave {
+    0% {
+        box-shadow:0 -10vh 20vh #0c0;
+        top:-100vh;
+    }
+    48%, 52% {
+        box-shadow:0 -10vh 20vh #090;
+    }
+    50% {
+        box-shadow:0 -10vh 20vh #060;
+    }
+    100% {
+        box-shadow:0 -10vh 20vh #0c0;
+        top:200vh;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity:0;
+    }
+}
+    */
