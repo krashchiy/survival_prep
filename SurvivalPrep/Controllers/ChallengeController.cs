@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using FuzzySharp;
+using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -106,8 +108,24 @@ namespace SurvivalPrep.Controllers
         {
             //todo: implement fuzzy matching
             Question question = await _context.Questions.Include(q => q.QuestionCategory).FirstOrDefaultAsync(q => q.QuestionId == qId);
-            bool success = string.Equals(question.Answer, answer.Trim(), StringComparison.CurrentCultureIgnoreCase);
+            string stored = question.Answer.ToLower();
+            string input = answer.ToLower().Trim();
+            //bool success = string.Equals(, answer.Trim(), StringComparison.CurrentCultureIgnoreCase);
 
+            //Check for number vs word digit representation match by converting number to word.
+            if(int.TryParse(stored, out int numStored))
+            {
+                stored = numStored.ToWords();
+            }
+            
+            if(int.TryParse(input, out int inputStored))
+            {
+                input = inputStored.ToWords();
+            }
+
+            //Perform fuzzy matching using Levenshtein distance and consider 90% match a success
+            int ratio = Fuzz.Ratio(stored, input);
+            bool success = ratio >= 90;
             if (success)
             {
                 CurrentScore += question.QuestionCategory.ScoreWeight;

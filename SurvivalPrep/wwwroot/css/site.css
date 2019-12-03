@@ -11,10 +11,58 @@ a.navbar-brand {
     font-family: 'Black Ops One', cursive;
 }
 
+.btn-primary {	
+    color: #fff;	
+    background-color: #1b6ec2;	
+    border-color: #1861ac;	
+}	
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {	
+    color: #fff;	
+    background-color: #1b6ec2;	
+    border-color: #1861ac;	
+}	
+
+/* Sticky footer styles	
+-------------------------------------------------- */	
+html {	
+    font-size: 14px;	
+}	
+@media (min-width: 768px) {	
+    html {	
+        font-size: 16px;	
+    }	
+}	
+
+.border-top {	
+    border-top: 1px solid #e5e5e5;	
+}	
+.border-bottom {	
+    border-bottom: 1px solid #e5e5e5;	
+}	
+
+.box-shadow {	
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);	
+}	
+
+button.accept-policy {	
+    font-size: 1rem;	
+    line-height: inherit;	
+}	
+
+/* Sticky footer styles	
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll;
+}	
+	
+
 /*taken from https://stackoverflow.com/questions/28931791/jquery-how-to-grey-out-the-background-while-showing-the-loading-icon-over-it*/
 .loader {
     z-index: 100;
-    background-color: #e5e5e5;
+    background-color: lightgreen;
     display: none;
     opacity: 0.5;
     position: absolute;
@@ -29,7 +77,9 @@ a.navbar-brand {
     top: 50%;
     left: 50%;
 }
-/*
+
+
+/*Taken from https://codemyui.com/fallout-pip-boy-screen-in-css-and-html/*/
 body {
     background-color:#000;
     margin:0;
@@ -44,7 +94,6 @@ body {
     box-sizing:border-box;
     font-family:'Fira Mono', monospace;
     font-size:20px;
-    height:100vh;
     overflow:hidden;
     padding:10vmin;
     width:100vw;
@@ -62,7 +111,7 @@ body {
 }
 
 .screen:after {
-    background-image:linear-gradient(transparent, transparent 3px, #222);
+    
     background-size:4px 4px;
     bottom:0;
     content:"";
@@ -113,4 +162,3 @@ p:last-child:after {
         opacity:0;
     }
 }
-    */
