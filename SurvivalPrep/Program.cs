@@ -25,7 +25,7 @@ namespace SurvivalPrep
 
                 try
                 {
-                    SeedData.Initialize(services);
+                    //SeedData.Initialize(services);
                     var usersRolesDB = services.GetRequiredService<PrepContext>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     UserDBInitializer.Initialize(usersRolesDB,userManager);

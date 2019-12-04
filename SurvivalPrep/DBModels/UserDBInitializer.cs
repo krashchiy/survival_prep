@@ -45,6 +45,18 @@ namespace SurvivalPrep.DBModels
             db.Items.Add(respirator);
             db.SaveChanges();
 
+            Item rowboat = new Item { Name = "Inflatable Rowboat", Cost = 150, Score = 200, ImageLink = "https://i.imgur.com/VQMKmes.jpg" };
+            rowboat.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = rowboat
+                    }
+                };
+            db.Items.Add(rowboat);
+            db.SaveChanges();
+
             Item compass = new Item { Name = "Compass", Cost = 20, Score = 30, ImageLink = "https://i.imgur.com/pAkP379.jpg" };
             compass.ItemDisasters = new List<ItemDisaster>
                 {
@@ -57,19 +69,31 @@ namespace SurvivalPrep.DBModels
             db.Items.Add(compass);
             db.SaveChanges();
 
-            Item rowboat = new Item { Name = "Inflatable Rowboat", Cost = 150, Score = 200, ImageLink = "https://i.imgur.com/b8KNPiU.jpg" };
-            rowboat.ItemDisasters = new List<ItemDisaster>
+            Item hardhat = new Item { Name = "Hard Hat", Cost = 20, Score = 50, ImageLink = "https://i.imgur.com/F48N5Zm.jpg" };
+            hardhat.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = hardhat
+                    }
+                };
+            db.Items.Add(hardhat);
+            db.SaveChanges();
+
+            Item lifejacket = new Item { Name = "Life Jacket", Cost = 50, Score = 80, ImageLink = "https://i.imgur.com/UE8zNls.jpg" };
+            lifejacket.ItemDisasters = new List<ItemDisaster>
                 {
                     new ItemDisaster
                     {
                         Disaster = flood,
-                        Item = rowboat
+                        Item = lifejacket
                     }
                 };
-            db.Items.Add(rowboat);
+            db.Items.Add(lifejacket);
             db.SaveChanges();
 
-            Item rations = new Item { Name = "Rations", Cost = 50, Score = 20, ImageLink = "https://i.imgur.com/Nadoc5A.jpg" };
+            Item rations = new Item { Name = "Rations", Cost = 30, Score = 10, ImageLink = "https://i.imgur.com/Nadoc5A.jpg" };
             rations.ItemDisasters = new List<ItemDisaster>
                 {
                     new ItemDisaster
@@ -99,6 +123,38 @@ namespace SurvivalPrep.DBModels
                     }
                 };
             db.Items.Add(rations);
+            db.SaveChanges();
+
+            Item water = new Item { Name = "Water", Cost = 50, Score = 20, ImageLink = "https://i.imgur.com/K1KLw0I.jpg" };
+            water.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = water
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = water
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = water
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = water
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = volcano,
+                        Item = water
+                    }
+                };
+            db.Items.Add(water);
             db.SaveChanges();
 
             Item firstaidkit = new Item { Name = "First-Aid Kit", Cost = 200, Score = 60, ImageLink = "https://i.imgur.com/wYHYCg9.jpg" };

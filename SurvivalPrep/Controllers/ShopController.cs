@@ -23,6 +23,37 @@ namespace SurvivalPrep.Controllers
             _userManager = userManager;
         }
 
+        public async Task<IActionResult> ShowDetails(int id)
+        {
+            var item = await _context.Items.FindAsync(id + 1);
+            var user_id = _userManager.GetUserId(User);
+            var user = _context.Users.FirstOrDefault(s => s.Id == user_id);
+
+            int current;
+            String name = item.Name;
+            String score = item.Score.ToString();
+            String cost = item.Cost.ToString();
+            var curItem = _context.ItemInstances.Where(i => i.ItemId == item.ID && i.ApplicationUserID == user_id).FirstOrDefault();
+            if (curItem == null)
+            {
+                current = 0;
+            }
+            else
+            {
+                current = curItem.Quantity;
+            }
+
+            return Json(
+                new
+                {
+                    success = true,
+                    name = name,
+                    score = score,
+                    curNum = current,
+                    cost = cost
+                });
+        }
+
         public async Task<IActionResult> BuyItem(int id, int quantity)
         {
             var item = await _context.Items.FindAsync(id + 1);
@@ -78,22 +109,5 @@ namespace SurvivalPrep.Controllers
             return View(await items.AsNoTracking().ToListAsync());
         }
 
-        // GET: Shop/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var item = await _context.Items
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (item == null)
-            {
-                return NotFound();
-            }
-
-            return View(item);
-        }
     }
 }

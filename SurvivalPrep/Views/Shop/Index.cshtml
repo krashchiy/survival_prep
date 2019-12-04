@@ -34,14 +34,16 @@
                     <td class="item-box" id="box_@id">
                         <img src="@Model.ElementAt(i + j).ImageLink" class="image" />
                         <br />
-                        <b id="name_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Name)</b>
+                        <b id="name_@id" style="font-size: 16px;">@Html.DisplayFor(model => model.ElementAt(i + j).Name)</b>
                         <br />
                         <div class="info">
                             Cost: <span id="cost_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Cost)</span> &nbsp; &nbsp;
                             Score: <span id="score_@id">@Html.DisplayFor(model => model.ElementAt(i + j).Score)</span>
-                            <br />
+                            <hr class="break" />
                             Disaster(s): @String.Join(", ", Model.ElementAt(i + j).ItemDisasters.Select(i => i.Disaster.Name).ToArray())
-                            <hr style="margin: 0px; margin-top: 2px" />
+                            <hr class="break" />
+                            <span id="toggle_@id" onclick="toggle_modal(event, @id)" class="details">Details</span>
+                            <hr class="break" />
                             Quantity:
                             <br />
                             <i class="plusminus fas fa-minus fa-xs" onclick="dec_quantity(event, @id)"></i>
@@ -56,6 +58,24 @@
         }
     </tbody>
 </table>
+
+<!-- modal code from boostrap https://getbootstrap.com/docs/4.0/components/modal/ -->
+<div class="modal fade" id="detailModal" name="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Item details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="modalBody" class="modal-body modal-text"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts
 {

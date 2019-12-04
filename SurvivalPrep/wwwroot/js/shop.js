@@ -54,3 +54,19 @@ function buy(e, id) {
         }
     });
 }
+
+function toggle_modal(e, id) {
+    $.ajax({
+        url: "/Shop/ShowDetails",
+        method: "POST",
+        data: {
+            id: id
+        }
+    }).done(function (result) {
+        $("#modalBody").text("Item name: " + result.name + "\n" + "Cost: " + result.cost + "\n" + "Score: " + result.score + "\n" + "Currently owned: " + result.curNum);
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        $("#modalBody").text("Error");
+    }).always(function () {
+        $("#detailModal").modal("show");
+    });
+}
