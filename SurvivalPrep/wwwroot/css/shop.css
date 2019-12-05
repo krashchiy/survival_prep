@@ -8,6 +8,7 @@
     color: #0c0;
     width: 100px;
     cursor: pointer;
+    animation: colorPulse 5s infinite ease-in-out;
 }
 
 .but:hover {
@@ -53,6 +54,7 @@
     border: none !important;
     color: #0c0 !important;
     font-size: 14px;
+    animation: colorPulse 5s infinite ease-in-out;
 }
 
 .plusminus {

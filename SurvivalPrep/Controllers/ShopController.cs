@@ -30,9 +30,6 @@ namespace SurvivalPrep.Controllers
             var user = _context.Users.FirstOrDefault(s => s.Id == user_id);
 
             int current;
-            String name = item.Name;
-            String score = item.Score.ToString();
-            String cost = item.Cost.ToString();
             var curItem = _context.ItemInstances.Where(i => i.ItemId == item.ID && i.ApplicationUserID == user_id).FirstOrDefault();
             if (curItem == null)
             {
@@ -47,10 +44,10 @@ namespace SurvivalPrep.Controllers
                 new
                 {
                     success = true,
-                    name = name,
-                    score = score,
-                    curNum = current,
-                    cost = cost
+                    name = item.Name,
+                    score = item.Score.ToString(),
+                    owned = current,
+                    cost = item.Cost.ToString()
                 });
         }
 
