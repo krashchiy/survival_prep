@@ -30,70 +30,85 @@
 
         </dl>
 
+        @{
+            var count = 1;
+            var items = Model.Item1.OwnedItems.ToList();
+        }
+
         <h2> Inventory </h2>
-        <div class="container">
-            <div id="accordion">
-                <div class="card-body text-dark">
-                    <table class="table table-bordered">
-                        <tr class="table-header">
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Score Gained</th>
-                        </tr>
-                        @foreach (var item in Model.Item1.OwnedItems.ToList())
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayName(item.Item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayName(item.Quantity.ToString())
-                                </td>
-                                <td>
-                                    @Html.DisplayName((item.Item.Score * item.Quantity).ToString())
-                                </td>
-                            </tr>
-                        }
-                    </table>
+        <div class="accordion">
+            <div class="text-center tbloutline">
+                <div class="row">
+                    <div class="col"><b>Item</b></div>
+                    <div class="col"><b>Quantity</b></div>
+                    <div class="col"><b>Score Gained</b></div>
                 </div>
+                <hr class="break" />
+                @foreach (var item in items)
+                {
+                    <div class="row">
+                        <div class="col">
+                            @Html.DisplayName(item.Item.Name)
+                        </div>
+                        <div class="col">
+                            @Html.DisplayName(item.Quantity.ToString())
+                        </div>
+                        <div class="col">
+                            @Html.DisplayName((item.Item.Score * item.Quantity).ToString())
+                        </div>
+                    </div>
+                    count += 1;
+                    @if (count <= items.Count)
+                    {
+                        <hr class="break" />
+                    }
+                }
             </div>
         </div>
+        <br/>
+
+        @{
+            count = 1;
+            var items2 = Model.Item2.ToList();
+        }
 
         <h2> Disaster Preparedness</h2>
-        <div class="container">
-            <div id="accordion">
-                <div class="card-body text-dark">
-                    <table class="table table-bordered">
-                        <tr class="table-header">
-                            <th>Disaster</th>
-                            <th>Preparedness</th>
-                        </tr>
-                        @foreach (var disaster in Model.Item2)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayName(disaster.Name)
-                                </td>
-                                <td>
-                                    @{
-                                        var score = 0;
-                                        foreach (var owneditem in Model.Item1.OwnedItems.ToList())
+        <div class="accordion">
+            <div class="text-center tbloutline">
+                <div class="row">
+                    <div class="col"><b>Disaster</b></div>
+                    <div class="col"><b>Preparedness</b></div>
+                </div>
+                <hr class="break" />
+                @foreach (var disaster in items2)
+                {
+                    <div class="row">
+                        <div class="col">
+                            @Html.DisplayName(disaster.Name)
+                        </div>
+                        <div class="col">
+                            @{
+                                var score = 0;
+                                foreach (var owneditem in Model.Item1.OwnedItems.ToList())
+                                {
+                                    foreach (var correspondingdisaster in owneditem.Item.ItemDisasters.ToList())
+                                    {
+                                        if (disaster.ItemDisasters.Contains(correspondingdisaster))
                                         {
-                                            foreach (var correspondingdisaster in owneditem.Item.ItemDisasters.ToList())
-                                            {
-                                                if (disaster.ItemDisasters.Contains(correspondingdisaster))
-                                                {
-                                                    score = score + (owneditem.Item.Score * owneditem.Quantity);
-                                                }
-                                            }
+                                            score = score + (owneditem.Item.Score * owneditem.Quantity);
                                         }
                                     }
-                                    @Html.DisplayName(score.ToString() + "%")
-                                </td>
-                            </tr>
-                        }
-                    </table>
-                </div>
+                                }
+                            }
+                            @Html.DisplayName(score + "%")
+                        </div>
+                    </div>
+                    count += 1;
+                    @if (count <= items2.Count)
+                    {
+                        <hr class="break" />
+                    }
+                }
             </div>
         </div>
     </div>

@@ -5,32 +5,37 @@
 
 <h1>@Html.DisplayName(ViewData["Disaster"] + " Scores")</h1>
 <partial name="DisasterLinks" />
-<div class="container">
-    <div class="card-body text-dark">
-        <table class="table table-bordered">
-            <tr class="table-header">
-                <th>Position</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-            @{var current = 1; }
-            @foreach (var user in (List<Tuple<string, int>>)ViewData["UserScores"])
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayName(current.ToString())
-                    </td>
-                    <td>
-                        <a asp-controller="User" asp-action="Details" asp-route-username="@user.Item1">
-                            @Html.DisplayFor(modelItem => user.Item1)
-                        </a>
-                    </td>
-                    <td>
-                        @Html.DisplayName(user.Item2.ToString())
-                    </td>
-                </tr>
-                current += 1;
-            }
-        </table>
+<div class="text-center tbloutline">
+    <div class="row">
+        <div class="col-2">Position</div>
+        <div class="col">Name</div>
+        <div class="col-2">Score</div>
     </div>
+    <hr class="break" />
+    @{
+        var current = 1;
+        var usersScores = (List<Tuple<string, int>>)ViewData["UserScores"];
+    }
+    @foreach (var user in usersScores)
+    {
+        <div class="row">
+            <div class="col-2">
+                @Html.DisplayName(current.ToString())
+            </div>
+            <div class="col">
+                <a asp-controller="User" asp-action="Details" asp-route-username="@user.Item1">
+                    @Html.DisplayFor(modelItem => user.Item1)
+                </a>
+            </div>
+            <div class="col-2">
+                @Html.DisplayName(user.Item2.ToString())
+            </div>
+        </div>
+        current += 1;
+        @if (current <= usersScores.Count)
+        {
+            <hr class="break" />
+        }
+    }
+
 </div>

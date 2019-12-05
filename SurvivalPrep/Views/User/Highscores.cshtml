@@ -7,32 +7,35 @@
 
 <h1>Highscores</h1>
 <partial name="DisasterLinks" />
-<div class="container">
-    <div class="card-body">
-        <table class="table table-bordered">
-            <tr class="table-header">
-                <th>Position</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-            @{var current = 1; }
-            @foreach (var user in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayName(current.ToString())
-                    </td>
-                    <td>
-                        <a asp-controller="User" asp-action="Details" asp-route-username="@user.UserName">
-                            @Html.DisplayFor(modelItem => user.UserName)
-                        </a>
-                    </td>
-                    <td>
-                        @Html.DisplayName(user.score.ToString())
-                    </td>
-                </tr>
-                current += 1;
-            }
-        </table>
+<br/>
+<div class="text-center tbloutline">
+    <div class="row">
+        <div class="col-2">Position</div>
+        <div class="col">Name</div>
+        <div class="col-2">Score</div>
     </div>
+    <hr class="break" />
+    @{var current = 1; }
+    @foreach (var user in Model)
+    {
+        <div class="row">
+            <div class="col-2">
+                @Html.DisplayName(current.ToString())
+            </div>
+            <div class="col">
+                <a asp-controller="User" asp-action="Details" asp-route-username="@user.UserName">
+                    @Html.DisplayFor(modelItem => user.UserName)
+                </a>
+            </div>
+            <div class="col-2">
+                @Html.DisplayName(user.score.ToString())
+            </div>
+        </div>
+        current += 1;
+        @if (current <= Model.Count())
+        {
+            <hr class="break" />
+        }
+        
+    }
 </div>

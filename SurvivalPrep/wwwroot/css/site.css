@@ -87,6 +87,18 @@ body {
     padding:0;
 }
 
+.tbloutline {
+    border: solid #0c0 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px !important;
+}
+
+.inputtxt {
+    color: #0c0;
+    background-color: #000000;
+}
+
 .screen {
     animation:colorPulse 5s infinite ease-in-out;
     background-image:radial-gradient(#444, #111);

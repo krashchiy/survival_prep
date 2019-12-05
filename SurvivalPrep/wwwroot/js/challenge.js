@@ -1,5 +1,5 @@
 ﻿$(function () {
-    console.log("loaded");
+    $("#currentAnswer").focus();
 });
 
 $(".btn-group > .btn").click(function () {
