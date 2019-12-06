@@ -23,12 +23,15 @@ namespace SurvivalPrep.Controllers
             _userManager = userManager;
         }
 
+        //Backend of Ajax call to display details for selected item on store page
         public async Task<IActionResult> ShowDetails(int id)
         {
+            //Get selected item
             var item = await _context.Items.FindAsync(id + 1);
+            //Get current user
             var user_id = _userManager.GetUserId(User);
-            var user = _context.Users.FirstOrDefault(s => s.Id == user_id);
 
+            //If user owns selected item display the amount owned, otherwise display 0
             int current;
             var curItem = _context.ItemInstances.Where(i => i.ItemId == item.ID && i.ApplicationUserID == user_id).FirstOrDefault();
             if (curItem == null)
@@ -51,20 +54,26 @@ namespace SurvivalPrep.Controllers
                 });
         }
 
+        //Backend of Ajax call to buy item
         public async Task<IActionResult> BuyItem(int id, int quantity)
         {
+            //Get selected item
             var item = await _context.Items.FindAsync(id + 1);
+            //Get current user
             var user_id = _userManager.GetUserId(User);
             var user = _context.Users.FirstOrDefault(s => s.Id == user_id);
 
+            //If user has enough monney
             if (user.Money < item.Cost * quantity)
             {
                 return BadRequest(new JsonResult(new { success = false }));
             }
             else
             {
+                //Subtract required money from total money and add bought items to user's owned items
                 user.Money = user.Money - item.Cost * quantity;
 
+                //If user doesn't own item, create new instance of item, otherwise as quantity bought to existing instance
                 var curItem = _context.ItemInstances.Where(i => i.ItemId == item.ID && i.ApplicationUserID == user_id).FirstOrDefault();
                 if (curItem == null)
                 {

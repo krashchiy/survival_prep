@@ -1,7 +1,6 @@
-﻿body {
-}
-
-/* button code - http://jsfiddle.net/J8zwC/ */
+﻿
+/* Buy button styling
+-------------------------------------------------- */	
 .but {
     border: 2px solid #0c0;
     background-color: transparent;
@@ -15,6 +14,21 @@
     background-color: #141414;
 }
 
+
+.money {
+    float: right !important;
+    margin-top: 12px !important;
+    margin-right: 10px !important;
+    font-size: 20px !important;
+}
+
+.title {
+    float: left !important;
+    margin-left: 10px !important;
+}
+
+/* Styling for item displays
+-------------------------------------------------- */	
 .info {
     border: solid #0c0 2px;
     margin-top: 5px;
@@ -28,22 +42,6 @@
 .details {
     text-decoration: underline;
     cursor: pointer;
-}
-
-.modal-text {
-    white-space: pre;
-}
-
-.modal-content {
-    background: #262626;
-}
-
-.modal-header {
-    border-bottom: 1px solid #0c0;
-}
-
-.modal-footer {
-    border-top: 1px solid #0c0;
 }
 
 .item-box {
@@ -63,18 +61,6 @@
     cursor: pointer !important;
 }
 
-.money {
-    float: right !important;
-    margin-top: 12px !important;
-    margin-right: 10px !important;
-    font-size: 20px !important;
-}
-
-.title {
-    float: left !important;
-    margin-left: 10px !important;
-}
-
 .image {
     width: 50% !important;
     margin-bottom: 15px !important;
@@ -87,4 +73,23 @@
     margin: 0px !important;
     margin-top: 5px !important;
     margin-bottom: 5px !important;
+}
+
+/* Modal styling
+-------------------------------------------------- */	
+
+.modal-text {
+    white-space: pre;
+}
+
+.modal-content {
+    background: #262626;
+}
+
+.modal-header {
+    border-bottom: 1px solid #0c0;
+}
+
+.modal-footer {
+    border-top: 1px solid #0c0;
 }
