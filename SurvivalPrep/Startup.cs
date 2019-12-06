@@ -32,6 +32,7 @@ namespace SurvivalPrep
             services.AddDbContextPool<PrepContext>(ops =>
                 ops.UseSqlServer(Configuration.GetConnectionString("PrepDB")));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

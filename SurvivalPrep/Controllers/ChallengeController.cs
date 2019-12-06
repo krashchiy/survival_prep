@@ -34,6 +34,7 @@ namespace SurvivalPrep.Controllers
             var userId = userManager.GetUserId(usr);
             _currentUser = context.Users.Find(userId);
             _context = context;
+            _context.Database.SetCommandTimeout(int.MaxValue);
         }
 
         public async Task<IActionResult> Index()
