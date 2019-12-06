@@ -184,6 +184,19 @@ namespace SurvivalPrep.DBModels
             db.Items.Add(firstaidkit);
             db.SaveChanges();
 
+            Item extinguisher = new Item { Name = "Fire Extinguisher", Cost = 20, Score = 50, ImageLink = "https://i.imgur.com/lhnCE6R.jpg" };
+            extinguisher.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = extinguisher
+                    },
+
+                };
+            db.Items.Add(extinguisher);
+            db.SaveChanges();
+
             // Seed users
             ApplicationUser user1 = new ApplicationUser();
             user1.UserName = "user1@domain.com";

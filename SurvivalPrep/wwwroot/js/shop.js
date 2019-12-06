@@ -63,7 +63,7 @@ function toggle_modal(e, id) {
             id: id
         }
     }).done(function (result) {
-        $("#modalBody").text("Item name: " + result.name + "\n" + "Cost: " + result.cost + "\n" + "Score: " + result.score + "\n" + "Currently owned: " + result.curNum);
+        $("#modalBody").text("Item name: " + result.name + "\n" + "Cost: " + result.cost + "\n" + "Score: " + result.score + "\n" + "Currently owned: " + result.owned);
     }).fail(function (jqXHR, textStatus, errorThrown) {
         $("#modalBody").text("Error");
     }).always(function () {
