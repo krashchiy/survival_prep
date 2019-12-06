@@ -45,7 +45,19 @@ namespace SurvivalPrep.DBModels
             db.Items.Add(respirator);
             db.SaveChanges();
 
-            Item rowboat = new Item { Name = "Inflatable Rowboat", Cost = 150, Score = 200, ImageLink = "https://i.imgur.com/VQMKmes.jpg" };
+            Item inf_rowboat = new Item { Name = "Inflatable Rowboat", Cost = 150, Score = 200, ImageLink = "https://i.imgur.com/VQMKmes.jpg" };
+            inf_rowboat.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = inf_rowboat
+                    }
+                };
+            db.Items.Add(inf_rowboat);
+            db.SaveChanges();
+            
+            Item rowboat = new Item { Name = "Rowboat", Cost = 100, Score = 100, ImageLink = "https://images-na.ssl-images-amazon.com/images/I/41wIXf%2B43uL._SR600%2C315_PIWhiteStrip%2CBottomLeft%2C0%2C35_SCLZZZZZZZ_.jpg" };
             rowboat.ItemDisasters = new List<ItemDisaster>
                 {
                     new ItemDisaster
@@ -56,7 +68,7 @@ namespace SurvivalPrep.DBModels
                 };
             db.Items.Add(rowboat);
             db.SaveChanges();
-
+            
             Item compass = new Item { Name = "Compass", Cost = 20, Score = 30, ImageLink = "https://i.imgur.com/pAkP379.jpg" };
             compass.ItemDisasters = new List<ItemDisaster>
                 {
@@ -125,6 +137,119 @@ namespace SurvivalPrep.DBModels
             db.Items.Add(rations);
             db.SaveChanges();
 
+            Item generator = new Item { Name = "Generator", Cost = 500, Score = 250, ImageLink = "https://images-na.ssl-images-amazon.com/images/I/81TfpvWrBRL._SX425_.jpg" };
+            generator.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = volcano,
+                        Item = generator
+                    }
+                };
+            db.Items.Add(generator);
+            db.SaveChanges();
+            
+            Item sol_generator = new Item { Name = "Portable Solar Generator", Cost = 150, Score = 50, ImageLink = "https://images-na.ssl-images-amazon.com/images/I/71HLgifCw0L._SX425_.jpg" };
+            sol_generator.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = sol_generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = sol_generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = sol_generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = sol_generator
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = volcano,
+                        Item = sol_generator
+                    }
+                };
+            db.Items.Add(sol_generator);
+            db.SaveChanges();
+
+            Item radios = new Item { Name = "Two-way radios waterproof", Cost = 100, Score = 50, ImageLink = "https://images-na.ssl-images-amazon.com/images/I/71Vph0r%2BPjL._AC_SL1200_.jpg" };
+            radios.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = radios
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = radios
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = radios
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = radios
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = volcano,
+                        Item = radios
+                    }
+                };
+            db.Items.Add(radios);
+            db.SaveChanges();
+
+            Item sleep_bag = new Item { Name = "Sleeping bag", Cost = 100, Score = 100, ImageLink = "https://images-na.ssl-images-amazon.com/images/I/61ck7nqGhTL._AC_SL1000_.jpg" };
+            sleep_bag.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = sleep_bag
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = sleep_bag
+                    }
+                };
+            db.Items.Add(sleep_bag);
+            db.SaveChanges();
+
             Item water = new Item { Name = "Water", Cost = 50, Score = 20, ImageLink = "https://i.imgur.com/K1KLw0I.jpg" };
             water.ItemDisasters = new List<ItemDisaster>
                 {
@@ -155,6 +280,38 @@ namespace SurvivalPrep.DBModels
                     }
                 };
             db.Items.Add(water);
+            db.SaveChanges();
+            
+            Item emRations = new Item { Name = "Emergency Rations", Cost = 50, Score = 50, ImageLink = "https://images-na.ssl-images-amazon.com/images/I/91TkZbtY1qL._SX425_.jpg" };
+            emRations.ItemDisasters = new List<ItemDisaster>
+                {
+                    new ItemDisaster
+                    {
+                        Disaster = wildfire,
+                        Item = emRations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = earthquake,
+                        Item = emRations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = hurricane,
+                        Item = emRations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = flood,
+                        Item = emRations
+                    },
+                    new ItemDisaster
+                    {
+                        Disaster = volcano,
+                        Item = emRations
+                    }
+                };
+            db.Items.Add(emRations);
             db.SaveChanges();
 
             Item firstaidkit = new Item { Name = "First-Aid Kit", Cost = 200, Score = 60, ImageLink = "https://i.imgur.com/wYHYCg9.jpg" };
