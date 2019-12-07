@@ -107,11 +107,9 @@ namespace SurvivalPrep.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitAnswer(int qId, string answer)
         {
-            //todo: implement fuzzy matching
             Question question = await _context.Questions.Include(q => q.QuestionCategory).FirstOrDefaultAsync(q => q.QuestionId == qId);
             string stored = question.Answer.ToLower();
             string input = answer.ToLower().Trim();
-            //bool success = string.Equals(, answer.Trim(), StringComparison.CurrentCultureIgnoreCase);
 
             //Check for number vs word digit representation match by converting number to word.
             if(int.TryParse(stored, out int numStored))

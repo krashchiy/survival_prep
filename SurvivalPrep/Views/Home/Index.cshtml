@@ -1,4 +1,18 @@
-﻿@{
+﻿<!--
+Author:    Nathan Robbins, Igor Ivanov, Jane Tian
+Date:      Dec. 6, 2019
+Course:    CS 4540, University of Utah, School of Computing
+Copyright: CS 4540 and Nathan Robbins, Igor Ivanov, Jane Tian - This work may not be copied for use in Academic Coursework.
+
+I, Igor Ivanov, certify that I wrote this code from scratch and did not copy it in part or whole from
+another source.  Any references used in the completion of the assignment are cited in my README file.
+
+File Contents
+
+Show application overview
+-->
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -12,7 +26,7 @@
 </p>
 
 <div class="text-left border border-secondary">
-    
+
     <h1 class="display-4 text-center">Project overview</h1>
 
     <h3 class="text-center">Features</h3>
@@ -21,12 +35,13 @@
         <li>Purchase survival items in the store</li>
         <li>Get ranked on the score board by preparedness level for certain disaster types</li>
     </ol>
-    
+
     <h3 class="text-center">Quick guide</h3>
     <ol>
         <li>Register a user profile</li>
         <li>Log into the website</li>
-        <li>Navigate to Challenges
+        <li>
+            Navigate to Challenges
             <ol>
                 <li>Get buried into thousands of fun and challenging trivia questions</li>
                 <li>Select question difficulty (the higher the difficulty, the more money is earned for correct answer)</li>
@@ -35,28 +50,32 @@
                 <li>You can navigate away from challenges page at any time since the earned points are saved on the fly.</li>
             </ol>
         </li>
-        
-        <li>Navigate to Store
+
+        <li>
+            Navigate to Store
             <ol>
                 <li>Choose items and quantity needed for purchase</li>
                 <li>Use earned money to buy the selected inventory</li>
             </ol>
         </li>
-        <li>Navigate to HighScores
+        <li>
+            Navigate to HighScores
             <ol>
                 <li>Check your level of preparedness for specific disaster based on purchased inventory</li>
                 <li>Check how you stack up against other users in the score table</li>
             </ol>
         </li>
     </ol>
-    
+
     <h3 class="text-center">Goodies under the hood</h3>
     <ol>
         <li>AJAX handling for most of the requests for faster response times and smoother experience</li>
         <li>Utilization of sweet alerts</li>
         <li>Adding Fallout 4 theme styling</li>
-        <li>Trivia question import from excel using external package to read from multiple sheets 
-            over tens of thousands of records and import them all into database on the fly when the project first starts</li>
+        <li>
+            Trivia question import from excel using external package to read from multiple sheets
+            over tens of thousands of records and import them all into database on the fly when the project first starts
+        </li>
         <li>Question answer match is performed using fuzzy string matching with Levenshtein distance.</li>
     </ol>
 </div>

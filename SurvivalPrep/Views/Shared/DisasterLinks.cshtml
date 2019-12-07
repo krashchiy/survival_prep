@@ -1,32 +1,45 @@
-﻿
-    <div class="btn-group" role="group" aria-label="Basic example">
-        @{
-            if ((string)ViewData["Selected"] == "_All")
-            {
+﻿<!--
+Author:    Nathan Robbins, Igor Ivanov, Jane Tian
+Date:      Dec. 6, 2019
+Course:    CS 4540, University of Utah, School of Computing
+Copyright: CS 4540 and Nathan Robbins, Igor Ivanov, Jane Tian - This work may not be copied for use in Academic Coursework.
 
-                <a class="btn btn-secondary active" asp-area="" asp-controller="User" asp-action="Highscores" aria-pressed="true">Total Scores</a>
+I, Nathan Robbins, certify that I wrote this code from scratch and did not copy it in part or whole from
+another source.  Any references used in the completion of the assignment are cited in my README file.
+
+File Contents
+
+Partial view containing information about disasters
+-->
+
+<div class="btn-group" role="group" aria-label="Basic example">
+    @{
+        if ((string)ViewData["Selected"] == "_All")
+        {
+
+            <a class="btn btn-secondary active" asp-area="" asp-controller="User" asp-action="Highscores" aria-pressed="true">Total Scores</a>
+        }
+        else
+        {
+            <a class="btn btn-secondary" asp-area="" asp-controller="User" asp-action="Highscores">Total Scores</a>
+        }
+    }
+
+    @{
+        foreach (var disaster in (List<SurvivalPrep.DBModels.Disaster>)ViewData["Disasters"])
+        {
+            if ((string)ViewData["Selected"] == disaster.Name)
+            {
+                <a class="btn btn-secondary active" asp-area="" asp-controller="User" asp-action="DisasterScores" asp-route-disaster="@disaster.Name" aria-pressed="true">
+                    @Html.DisplayName(disaster.Name)
+                </a>
             }
             else
             {
-                <a class="btn btn-secondary" asp-area="" asp-controller="User" asp-action="Highscores">Total Scores</a>
+                <a class="btn btn-secondary" asp-area="" asp-controller="User" asp-action="DisasterScores" asp-route-disaster="@disaster.Name">
+                    @Html.DisplayName(disaster.Name)
+                </a>
             }
         }
-
-        @{
-            foreach (var disaster in (List<SurvivalPrep.DBModels.Disaster>)ViewData["Disasters"])
-            {
-                if ((string)ViewData["Selected"] == disaster.Name)
-                {
-                    <a class="btn btn-secondary active" asp-area="" asp-controller="User" asp-action="DisasterScores" asp-route-disaster="@disaster.Name" aria-pressed="true">
-                        @Html.DisplayName(disaster.Name)
-                    </a>
-                }
-                else
-                {
-                    <a class="btn btn-secondary" asp-area="" asp-controller="User" asp-action="DisasterScores" asp-route-disaster="@disaster.Name">
-                        @Html.DisplayName(disaster.Name)
-                    </a>
-                }
-            }
-        }
-    </div>
+    }
+</div>
