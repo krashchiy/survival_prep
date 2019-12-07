@@ -16,6 +16,16 @@ Humanizer: https://github.com/Humanizr/Humanizer
 Bootstrap: https://getbootstrap.com/docs/4.0/components/modal/
 Sweet alerts: https://sweetalert2.github.io/
 
+Test login users (seeded):
+user1@domain.com
+123ABC!@#def
+
+user2@domain.com
+123ABC!@#def
+
+user3@differentdomain.com
+123ABC!@#def
+
 Our survival prep application provides fun and education in the same package.
 Use your wits to solve fun trivia challenges and stock up on survival inventory!
 
